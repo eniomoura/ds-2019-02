@@ -56,19 +56,19 @@ public class Salada {
         temperos = Collections.unmodifiableList(builder.temperos);
     }
 
-    public List<String> getfolhas() {
+    public List<String> getFolhas() {
         return folhas;
     }
 
-    public List<String> getfrutas() {
+    public List<String> getFrutas() {
         return frutas;
     }
 
-    public List<String> getmolhos() {
+    public List<String> getMolhos() {
         return molhos;
     }
 
-    public List<String> gettemperos() {
+    public List<String> getTemperos() {
         return temperos;
     }
 
