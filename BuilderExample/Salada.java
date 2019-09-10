@@ -4,7 +4,10 @@ import java.util.List;
 
 public class Salada {
 
+    // TODO melhor seria Enum Folha em vez de String
     private List<String> folhas;
+    
+    // TODO melhor seria Set<Fruta>, supondo que não faz sentido repetição
     private List<String> frutas;
     private List<String> molhos;
     private List<String> temperos;
@@ -49,6 +52,7 @@ public class Salada {
         }
     }
 
+    // TODO não compila??!!! Não seria Salada?
     private Folha(Builder builder) {
         folhas = Collections.unmodifiableList(builder.folhas);
         frutas = Collections.unmodifiableList(builder.frutas);
