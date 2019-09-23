@@ -8,9 +8,10 @@ class ClasseCriadaTest {
     @org.junit.jupiter.api.Test
     void close() throws IOException {
         try {
-            ClasseCriada classeCriada = new ClasseCriada(File.createTempFile("teste", "Testado"));
             Assertions.assertThrows(RuntimeException.class, () -> {
-                classeCriada.close();
+                try(
+                    ClasseCriada obj = new ClasseCriada(File.createTempFile("Teste", "Testado"))
+                ){}
             });
         }catch (Exception e){
             throw e;
