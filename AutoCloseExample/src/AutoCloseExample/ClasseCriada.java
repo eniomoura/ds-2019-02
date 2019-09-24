@@ -1,3 +1,4 @@
+// FIXME nome fora do padrão deveria ser algo como com.github.eniomoura.autoclose, por exemplo
 package AutoCloseExample;
 
 import java.io.File;
@@ -10,6 +11,7 @@ public class ClasseCriada extends FileInputStream {
         super(file);
     }
 
+    // FIXME este método não gera IOException
     @Override
     public void close() throws IOException {
         throw new RuntimeException("método close chamado");
