@@ -22,22 +22,8 @@ class ConstrutorExpressao {
      * @param expressao A expressão a ser compilada.
      * @return Instância de {@see Expressao} com a expressao compilada no filepath default.
      */
-    public Expressao constroiExpressao(String expressao) {
-        String filepath = STD_FILE_PATH;
-        geraBytecode(filepath);
-        return novaExpressao(filepath);
-    }
-
-    /** Método a ser chamado para retornar uma instância de {@see Expressao}, gerando
-     * o bytecode cujo caminho será armazenado nessa instância, e gerando o identificador
-     * que será posteriormente usado para recuperar essa instância com o método
-     * {@link #recuperaExpressao(String)}. Os valores da instância serão inicializados
-     * pelo método {@link #novaExpressao(String)}.
-     * @param filepath O caminho onde o arquivo bytecode será gerado na compilação.
-     * @param expressao A expressão a ser compilada.
-     * @return Instância de {@see Expressao} com a expressao compilada no filepath alvo.
-     */
-    public Expressao constroiExpressao(String expressao, String filepath) {
+    public Expressao constroiExpressao(String expressao) { //TODO: Modificar para que o parametro 'expressao' seja utilizado corretamente e o filepath seja gerado em geraFilePath
+        String filepath = geraFilePath();
         geraBytecode(filepath);
         return novaExpressao(filepath);
     }
@@ -47,11 +33,10 @@ class ConstrutorExpressao {
      * @param identifier O identifier gerado durante a compilação inicial da expressão.
      * @return Instância de {@see Expressao} reconstruída do bytecode recuperado pelo identifier.
      */
-    public Expressao recuperaExpressao(String identifier) {
+    private Expressao recuperaExpressao(String identifier) { //TODO: Inserir chamada dessa expressão quando houver necessidade do uso de cache
         novaExpressao(identifier);
         return expressaoRecuperada;
     }
-
 
     /** Método a ser chamado internamente por essa classe, para fornecer instâncias de
      * {@see Expressao} inicializadas com base no filepath do bytecode gerado para os métodos
@@ -64,31 +49,26 @@ class ConstrutorExpressao {
 		Expressao novaExpressao = new Expressao();
         novaExpressao.identifier = filepath;
         novaExpressao.classFilePath = filepath;
+        //TODO: Chamar cacheiaExpressao() para guardar na classe gerada o bytecode pronto para reutilizar
 		return novaExpressao;
 	}
 
-
-	private ConstrutorExpressao geraBytecode(String filepath) { //stub - CORRIGIR - input está incorreto
-        completaCodigo()
-		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
-        try (   StandardJavaFileManager fm = compiler.getStandardFileManager(null, null, null);
-                StringWriter out = new StringWriter();
-                PrintWriter outWriter = new PrintWriter(out)) {
-            Iterable<? extends JavaFileObject> input = fm.getJavaFileObjects(System.getProperty(filepath));
-            List<String> options = null; // ?
-            
-            compiler.getTask(outWriter, fm, null, options, null, input).call();
-        }
-        return this;
+	private ConstrutorExpressao geraBytecode(String filepath) { //TODO: Obter código de https://github.com/kyriosdata/parser/issues/1
+    
 	}
+
+    private String geraFilePath(){}
+
+    private ? cacheiaExpressao(){}
 }
 
 class Expressao {
 
     String identifier;
     String classFilePath;
+    //TODO: Adicionar atributo de cache para essa expressão
 
     public Double execute(Dictionary<String, Integer> parametros) {
-        return runProcess("java " + classFilePath);
+        /* definir do codigo do GeradorTest em https://github.com/kyriosdata/parser/issues/1 */
     }
 }
